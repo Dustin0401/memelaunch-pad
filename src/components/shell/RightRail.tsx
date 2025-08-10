@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getGainers } from '@/lib/api';
 import GainerRow from '@/components/cards/GainerRow';
+import { useTrade } from '@/store/useTrade';
 
 export default function RightRail() {
   const { data } = useQuery({ queryKey: ['gainers'], queryFn: getGainers, refetchInterval: 5000 });
+  const { openTrade } = useTrade();
 
   return (
     <aside className="hidden xl:block w-80 shrink-0 p-4 space-y-4">
@@ -20,7 +22,7 @@ export default function RightRail() {
         <div className="divide-y divide-border/60">
           {data?.map((c) => (
             <div key={c.id} className="py-2 first:pt-0 last:pb-0">
-              <GainerRow name={c.name} pct={c.change24hPct} imageUrl={c.imageUrl} />
+              <GainerRow name={c.name} pct={c.change24hPct} imageUrl={c.imageUrl} onBuy={() => openTrade('buy', c)} />
             </div>
           ))}
         </div>

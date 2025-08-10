@@ -8,7 +8,8 @@ import { apiStart, getCoins, subscribeStream } from '@/lib/api';
 import { useSearchParams } from 'react-router-dom';
 import { useFilters } from '@/store/useFilters';
 import type { Coin } from '@/lib/types';
-
+import TradeModal from '@/components/forms/TradeModal';
+import { useTrade } from '@/store/useTrade';
 apiStart();
 
 const tabToParams = (tab: string | null): { status?: 'live' | 'new' | 'scheduled' | 'all'; sort?: 'gainers' | 'volume' } => {
@@ -29,7 +30,7 @@ const tabToParams = (tab: string | null): { status?: 'live' | 'new' | 'scheduled
   }
 };
 
-const TradeModal = () => null; // placeholder for future
+
 
 const Index = () => {
   const [params, setParams] = useSearchParams();
@@ -37,6 +38,7 @@ const Index = () => {
   const { setTab } = useFilters();
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const queryClient = useQueryClient();
+  const { openTrade } = useTrade();
 
   useEffect(() => setTab(tab as any), [tab]);
 
@@ -86,7 +88,7 @@ const Index = () => {
         <SideNav />
         <main className="flex-1 p-4 md:p-6">
           {coins.map((c) => (
-            <CoinCard key={c.id} coin={c} onBuy={() => {}} />
+            <CoinCard key={c.id} coin={c} onBuy={(coin) => openTrade('buy', coin)} />
           ))}
           {query.hasNextPage && (
             <div ref={sentinelRef} className="py-8 text-center text-sm text-muted-foreground">Loading more…</div>
