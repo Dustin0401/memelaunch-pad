@@ -1,12 +1,100 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useEffect, useMemo, useRef } from 'react';
+import Header from '@/components/shell/Header';
+import SideNav from '@/components/shell/SideNav';
+import RightRail from '@/components/shell/RightRail';
+import CoinCard from '@/components/cards/CoinCard';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
+import { apiStart, getCoins, subscribeStream } from '@/lib/api';
+import { useSearchParams } from 'react-router-dom';
+import { useFilters } from '@/store/useFilters';
+import type { Coin } from '@/lib/types';
+
+apiStart();
+
+const tabToParams = (tab: string | null): { status?: 'live' | 'new' | 'scheduled' | 'all'; sort?: 'gainers' | 'volume' } => {
+  switch (tab) {
+    case 'all':
+      return { status: 'all' };
+    case 'new':
+      return { status: 'new' };
+    case 'top':
+      return { status: 'all', sort: 'gainers' };
+    case 'volume':
+      return { status: 'all', sort: 'volume' };
+    case 'scheduled':
+      return { status: 'scheduled' };
+    case 'live':
+    default:
+      return { status: 'live' };
+  }
+};
+
+const TradeModal = () => null; // placeholder for future
 
 const Index = () => {
+  const [params, setParams] = useSearchParams();
+  const tab = params.get('tab') ?? 'live';
+  const { setTab } = useFilters();
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const queryClient = useQueryClient();
+
+  useEffect(() => setTab(tab as any), [tab]);
+
+  const qParams = useMemo(() => tabToParams(tab), [tab]);
+
+  const query = useInfiniteQuery({
+    queryKey: ['coins', qParams],
+    queryFn: ({ pageParam }) => getCoins({ ...qParams, cursor: pageParam ?? null, limit: 10 }),
+    initialPageParam: null as string | null,
+    getNextPageParam: (last) => last.nextCursor,
+    refetchInterval: 10000,
+  });
+
+  // SSE-like updates -> merge into cache
+  useEffect(() => {
+    const unsub = subscribeStream((evt) => {
+      if (evt.type !== 'price') return;
+      queryClient.setQueriesData({ queryKey: ['coins'] }, (data: any) => {
+        if (!data) return data;
+        const pages = data.pages.map((p: any) => ({
+          ...p,
+          items: p.items.map((c: Coin) => (c.id === evt.payload.id ? { ...c, ...evt.payload } : c)),
+        }));
+        return { ...data, pages };
+      });
+    });
+    return () => unsub();
+  }, [queryClient]);
+
+  // infinite scroll with IntersectionObserver
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) query.fetchNextPage();
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [sentinelRef.current]);
+
+  const coins = query.data?.pages.flatMap((p) => p.items) ?? [];
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen">
+      <Header />
+      <div className="container mx-auto flex gap-0">
+        <SideNav />
+        <main className="flex-1 p-4 md:p-6">
+          {coins.map((c) => (
+            <CoinCard key={c.id} coin={c} onBuy={() => {}} />
+          ))}
+          {query.hasNextPage && (
+            <div ref={sentinelRef} className="py-8 text-center text-sm text-muted-foreground">Loading more…</div>
+          )}
+        </main>
+        <RightRail />
       </div>
+      <TradeModal />
     </div>
   );
 };
