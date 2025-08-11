@@ -26,29 +26,32 @@ export default function Leaderboard() {
       <Header />
       <main className="container mx-auto p-4 md:p-6">
         <section className="grid md:grid-cols-3 gap-4 md:gap-6">
-          {(isLoading ? Array.from({ length: 3 }) : top3).map((e, i) => (
-            <Card key={i} className={`rounded-2xl border-border ${i === 0 ? 'md:scale-105' : ''}`}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  <span className="text-2xl font-bold">{i + 1}</span>
-                  <div className="size-10 rounded-xl overflow-hidden bg-muted" aria-hidden>
-                    {e && <img src={e.avatar} alt="creator avatar" className="w-full h-full object-cover" loading="lazy" />}
-                  </div>
-                  <span className="truncate text-sm">{e?.account ?? '—'}</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-semibold tracking-tight">{e ? `$${Intl.NumberFormat().format(Math.round(e.revenueUsd))}` : '—'}</div>
-                <div className="mt-3 flex -space-x-2">
-                  {(e?.topCoins ?? Array.from({ length: 3 })).map((c, idx) => (
-                    <div key={idx} className="size-8 rounded-xl overflow-hidden border border-border bg-muted">
-                      {c && <img src={c.imageUrl} alt="token" className="w-full h-full object-cover" loading="lazy" />}
+          {(() => {
+            const cards: (CreatorLeaderboardEntry | null)[] = isLoading ? [null, null, null] : top3;
+            return cards.map((e, i) => (
+              <Card key={i} className={`rounded-2xl border-border ${i === 0 ? 'md:scale-105' : ''}`}>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3">
+                    <span className="text-2xl font-bold">{i + 1}</span>
+                    <div className="size-10 rounded-xl overflow-hidden bg-muted" aria-hidden>
+                      {e && <img src={e.avatar} alt="creator avatar" className="w-full h-full object-cover" loading="lazy" />}
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                    <span className="truncate text-sm">{e?.account ?? '—'}</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-semibold tracking-tight">{e ? `$${Intl.NumberFormat().format(Math.round(e.revenueUsd))}` : '—'}</div>
+                  <div className="mt-3 flex -space-x-2">
+                    {(e?.topCoins ?? []).map((c, idx) => (
+                      <div key={idx} className="size-8 rounded-xl overflow-hidden border border-border bg-muted">
+                        <img src={c.imageUrl} alt="token" className="w-full h-full object-cover" loading="lazy" />
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ));
+          })()}
         </section>
 
         <section className="mt-8">
