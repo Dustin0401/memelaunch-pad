@@ -32,7 +32,7 @@ export default function SideNav() {
       {items.map((it) => {
         const Icon = it.icon;
         const isActive = active === it.key || (active === null && it.key === 'live');
-        const to = `/?tab=${it.key}`;
+        const to = it.key === 'new' ? '/coins' : `/?tab=${it.key}`;
         return (
           <Link key={it.key} to={to} aria-current={isActive ? 'page' : undefined}
             className={`flex items-center gap-3 px-3 py-2 rounded-xl border ${isActive ? 'bg-muted/60 border-border' : 'border-transparent hover:bg-muted/40'}`}>
