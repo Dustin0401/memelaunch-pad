@@ -1,3 +1,4 @@
+
 import { useEffect, useMemo, useRef } from 'react';
 import Header from '@/components/shell/Header';
 import SideNav from '@/components/shell/SideNav';
@@ -29,8 +30,6 @@ const tabToParams = (tab: string | null): { status?: 'live' | 'new' | 'scheduled
       return { status: 'live' };
   }
 };
-
-
 
 const Index = () => {
   const [params, setParams] = useSearchParams();
