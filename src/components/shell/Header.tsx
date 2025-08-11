@@ -1,7 +1,7 @@
 import { Search, Timer } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
 import { useFilters } from '@/store/useFilters';
 import { useUI } from '@/store/useUI';
 import { motion } from 'framer-motion';
@@ -25,6 +25,10 @@ export default function Header() {
     <div className="px-2.5 py-1 rounded-full border border-border bg-muted/40 text-xs">Base</div>
   ), []);
 
+  const loc = useLocation();
+  const isActive = (to: string) => (to === '/coins' ? (loc.pathname === '/' || loc.pathname.startsWith('/coins')) : loc.pathname.startsWith(to));
+  const navClass = (to: string) => `px-3 py-1.5 rounded-full border text-sm ${isActive(to) ? 'bg-muted/60 border-border' : 'border-transparent hover:bg-muted/40'}`;
+
   return (
     <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="container mx-auto flex items-center gap-3 py-3">
@@ -33,6 +37,12 @@ export default function Header() {
           <span className="font-semibold tracking-tight">flaunch</span>
         </Link>
         {chainPill}
+
+        <nav className="hidden md:flex items-center gap-2 ml-3" aria-label="Main">
+          <Link to="/coins" className={navClass('/coins')}>Coins</Link>
+          <Link to="/leaderboard" className={navClass('/leaderboard')}>Leaderboard</Link>
+          <Link to="/how-it-works" className={navClass('/how-it-works')}>How it works</Link>
+        </nav>
 
         <div className="flex-1 max-w-2xl mx-4">
           <div className="relative">

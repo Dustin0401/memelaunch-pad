@@ -24,3 +24,16 @@ export type CoinListResponse = {
   items: Coin[];
   nextCursor: string | null;
 };
+
+export type CreatorLeaderboardEntry = {
+  account: string;
+  avatar: string;
+  created: number;
+  revenueUsd: number;
+  topCoins: { id: string; imageUrl: string }[];
+};
+
+export type LeaderboardResponse = {
+  top3: CreatorLeaderboardEntry[];
+  rest: CreatorLeaderboardEntry[];
+};

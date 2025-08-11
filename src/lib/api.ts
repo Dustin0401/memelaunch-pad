@@ -1,5 +1,5 @@
 import { db, startPriceDrift, bus, type StreamEvent } from '@/mocks/db';
-import type { Coin, CoinListResponse } from './types';
+import type { Coin, CoinListResponse, LeaderboardResponse } from './types';
 
 export function apiStart() {
   startPriceDrift();
@@ -48,4 +48,20 @@ export async function tradeSell(id: string, amountTokens: number): Promise<{ txH
   const evt: StreamEvent = { type: 'volume', payload: { id: coin.id, volume24hUsd: coin.volume24hUsd } };
   bus.dispatchEvent(new CustomEvent('stream', { detail: evt }));
   return { txHash: '0x' + Math.random().toString(16).slice(2).padEnd(64, '0'), receivedEth: Number(receivedEth.toFixed(6)) };
+}
+
+export async function getLeaderboard(): Promise<LeaderboardResponse> {
+  await delay(200);
+  const byCreator = new Map<string, { account: string; revenueUsd: number; created: number; avatar: string; topCoins: { id: string; imageUrl: string }[] }>();
+  for (const c of db.coins) {
+    const existing = byCreator.get(c.creator) ?? { account: c.creator, revenueUsd: 0, created: 0, avatar: c.imageUrl, topCoins: [] };
+    existing.revenueUsd += c.volume24hUsd;
+    existing.created += 1;
+    if (existing.topCoins.length < 4) existing.topCoins.push({ id: c.id, imageUrl: c.imageUrl });
+    byCreator.set(c.creator, existing);
+  }
+  const arr = Array.from(byCreator.values()).sort((a, b) => b.revenueUsd - a.revenueUsd);
+  const top3 = arr.slice(0, 3);
+  const rest = arr.slice(3, 20);
+  return { top3, rest };
 }
