@@ -131,7 +131,6 @@ const Coins = () => {
             </div>
           )}
         </main>
-        <RightRail />
       </div>
     </div>
   );
