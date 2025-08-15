@@ -12,7 +12,7 @@ export default function HowItWorks() {
       title: 'Tokenized Memestream',
       card: (
         <div className="relative">
-          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden min-h-[500px] backdrop-blur-sm border border-gray-700/50">
+          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden h-[500px] backdrop-blur-sm border border-gray-700/50">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-3xl"></div>
             
             {/* Floating elements illustration */}
@@ -65,7 +65,7 @@ export default function HowItWorks() {
       title: 'Fixed Price Fair Launch',
       card: (
         <div className="relative">
-          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden min-h-[500px] backdrop-blur-sm border border-gray-700/50">
+          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden h-[500px] backdrop-blur-sm border border-gray-700/50">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20 rounded-3xl"></div>
             <div className="relative z-10">
               {/* Main coin display */}
@@ -116,7 +116,7 @@ export default function HowItWorks() {
       title: 'Automated Buybacks',
       card: (
         <div className="relative">
-          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden min-h-[500px] backdrop-blur-sm border border-gray-700/50">
+          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden h-[500px] backdrop-blur-sm border border-gray-700/50">
             <div className="absolute inset-0 bg-gradient-to-br from-green-900/20 to-teal-900/20 rounded-3xl"></div>
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-8 text-white text-center">Automated Buybacks</h3>
@@ -169,7 +169,7 @@ export default function HowItWorks() {
       title: 'Rev Share',
       card: (
         <div className="relative">
-          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden min-h-[500px] backdrop-blur-sm border border-gray-700/50">
+          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden h-[500px] backdrop-blur-sm border border-gray-700/50">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-3xl"></div>
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-8 text-white text-center">Rev Share</h3>
@@ -242,7 +242,7 @@ export default function HowItWorks() {
       <main className="container mx-auto p-4 md:p-6">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-16">Flaunch features explained</h1>
         
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <Carousel 
             className="relative"
             opts={{
@@ -252,7 +252,7 @@ export default function HowItWorks() {
           >
             <CarouselContent className="-ml-4">
               {features.map((feature, index) => (
-                <CarouselItem key={feature.id} className="pl-4 md:basis-1/2 lg:basis-1/1">
+                <CarouselItem key={feature.id} className="pl-4 md:basis-2/3 lg:basis-3/5">
                   {feature.card}
                 </CarouselItem>
               ))}
