@@ -12,8 +12,8 @@ export default function HowItWorks() {
       title: 'Tokenized Memestream',
       card: (
         <div className="relative">
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 relative overflow-hidden min-h-[400px]">
-            <div className="absolute inset-0 bg-black/20 rounded-3xl"></div>
+          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden min-h-[500px] backdrop-blur-sm border border-gray-700/50">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-3xl"></div>
             
             {/* Floating elements illustration */}
             <div className="relative z-10">
@@ -21,11 +21,11 @@ export default function HowItWorks() {
                 <div className="w-8 h-8 bg-white/30 rounded-lg"></div>
               </div>
               <div className="absolute top-8 right-8 w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl opacity-60"></div>
-              <div className="absolute bottom-20 left-8 w-10 h-10 bg-gradient-to-br from-green-500 to-teal-500 rounded-lg opacity-70"></div>
-              <div className="absolute bottom-8 right-12 w-14 h-14 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl opacity-50"></div>
+              <div className="absolute bottom-32 left-8 w-10 h-10 bg-gradient-to-br from-green-500 to-teal-500 rounded-lg opacity-70"></div>
+              <div className="absolute bottom-32 right-12 w-14 h-14 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl opacity-50"></div>
               
               {/* Central illustration */}
-              <div className="flex items-center justify-center mt-12">
+              <div className="flex items-center justify-center mt-8 mb-8">
                 <div className="relative">
                   <div className="w-32 h-32 bg-gradient-to-br from-gray-700 to-gray-800 rounded-3xl border-2 border-gray-600 flex items-center justify-center">
                     <div className="text-4xl">💎</div>
@@ -47,16 +47,16 @@ export default function HowItWorks() {
                 </div>
               </div>
               
-              <h3 className="text-2xl font-bold text-center mt-8 text-white">Tokenized Memestream</h3>
+              <h3 className="text-2xl font-bold text-center mb-6 text-white">Tokenized Memestream</h3>
+              
+              {/* Text content inside card */}
+              <div className="space-y-3 text-gray-300 text-sm leading-relaxed">
+                <p>The creator of the memecoin decides who receives the Memestream — an NFT that grants the holder the rights to the coin's trading fees.</p>
+                <p>The Memestream can be airdropped to any wallet at creation, or transferred at any time after. This unlocks secondary markets for the coin's trading fees as well as Community Takeovers, charitable or private fundraising efforts and financial services like borrowing and lending.</p>
+                <p>Only by tokenizing a coin's trading fees can a true memeconomy begin to form.</p>
+              </div>
             </div>
           </div>
-        </div>
-      ),
-      description: (
-        <div className="space-y-4 text-gray-300">
-          <p>The creator of the memecoin decides who receives the Memestream — an NFT that grants the holder the rights to the coin's trading fees.</p>
-          <p>The Memestream can be airdropped to any wallet at creation, or transferred at any time after. This unlocks secondary markets for the coin's trading fees as well as Community Takeovers, charitable or private fundraising efforts and financial services like borrowing and lending.</p>
-          <p>Only by tokenizing a coin's trading fees can a true memeconomy begin to form.</p>
         </div>
       )
     },
@@ -65,12 +65,12 @@ export default function HowItWorks() {
       title: 'Fixed Price Fair Launch',
       card: (
         <div className="relative">
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 relative overflow-hidden min-h-[400px] border-2 border-purple-500/30">
-            <div className="absolute inset-0 bg-black/20 rounded-3xl"></div>
+          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden min-h-[500px] backdrop-blur-sm border border-gray-700/50">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20 rounded-3xl"></div>
             <div className="relative z-10">
               {/* Main coin display */}
               <div className="flex justify-center mb-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center shadow-lg">
                   <div className="text-3xl">🐱</div>
                 </div>
               </div>
@@ -86,7 +86,7 @@ export default function HowItWorks() {
               </div>
               
               {/* Progress bar */}
-              <div className="bg-gray-800 rounded-xl p-4 mb-4">
+              <div className="bg-gray-800/60 rounded-xl p-4 mb-6 backdrop-blur-sm">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm text-gray-400 flex items-center gap-2">
                     <span className="text-blue-400">🚀</span> Shielded launch
@@ -98,16 +98,16 @@ export default function HowItWorks() {
                 </div>
               </div>
               
-              <h3 className="text-xl font-bold text-center text-white">Fixed Price Fair Launch</h3>
+              <h3 className="text-xl font-bold text-center text-white mb-6">Fixed Price Fair Launch</h3>
+              
+              {/* Text content inside card */}
+              <div className="space-y-3 text-gray-300 text-sm leading-relaxed">
+                <p>When a coin is flaunched it goes into a 30 minute period where the price is fixed for everyone.</p>
+                <p>Once the 30 minute period is over, or all the fair launch coins are sold, the coin moves into price discovery.</p>
+                <p>Every user that buys during a Fair Launch can sell at the same price once the Fair Launch ends.</p>
+              </div>
             </div>
           </div>
-        </div>
-      ),
-      description: (
-        <div className="space-y-4 text-gray-300">
-          <p>When a coin is flaunched it goes into a 30 minute period where the price is fixed for everyone.</p>
-          <p>Once the 30 minute period is over, or all the fair launch coins are sold, the coin moves into price discovery.</p>
-          <p>Every user that buys during a Fair Launch can sell at the same price once the Fair Launch ends.</p>
         </div>
       )
     },
@@ -116,13 +116,13 @@ export default function HowItWorks() {
       title: 'Automated Buybacks',
       card: (
         <div className="relative">
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 relative overflow-hidden min-h-[400px]">
-            <div className="absolute inset-0 bg-black/20 rounded-3xl"></div>
+          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden min-h-[500px] backdrop-blur-sm border border-gray-700/50">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-900/20 to-teal-900/20 rounded-3xl"></div>
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-8 text-white text-center">Automated Buybacks</h3>
               
               <div className="space-y-6">
-                <div className="bg-gray-700/50 rounded-xl p-4">
+                <div className="bg-gray-700/60 rounded-xl p-4 backdrop-blur-sm">
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-sm text-gray-300">Buyback charging</span>
                     <span className="text-yellow-400 text-sm">+86.54%</span>
@@ -132,7 +132,7 @@ export default function HowItWorks() {
                   </div>
                 </div>
                 
-                <div className="bg-gray-700/50 rounded-xl p-4">
+                <div className="bg-gray-700/60 rounded-xl p-4 backdrop-blur-sm">
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-sm text-gray-300">Buyback active</span>
                     <span className="text-green-400 text-sm">1.45%</span>
@@ -143,24 +143,24 @@ export default function HowItWorks() {
                 </div>
                 
                 {/* Visual representation */}
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-center mt-8 mb-6">
                   <div className="relative">
-                    <div className="w-24 h-24 bg-gradient-to-br from-green-600 to-teal-600 rounded-full flex items-center justify-center">
+                    <div className="w-24 h-24 bg-gradient-to-br from-green-600 to-teal-600 rounded-full flex items-center justify-center shadow-lg">
                       <div className="text-2xl">🔄</div>
                     </div>
                     <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-500 rounded-full animate-pulse"></div>
                   </div>
                 </div>
+                
+                {/* Text content inside card */}
+                <div className="space-y-3 text-gray-300 text-sm leading-relaxed">
+                  <p>Buybacks are released every time a coin collects 0.1 ETH in trading fees. During this time the Buyback is shown as "charging".</p>
+                  <p>When the buyback starts it becomes "active" and the bar will drain until the buyback is complete.</p>
+                  <p>Buybacks can stack on top of each other. Large buy demand will lead to buybacks far greater than 0.1 ETH.</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ),
-      description: (
-        <div className="space-y-4 text-gray-300">
-          <p>Buybacks are released every time a coin collects 0.1 ETH in trading fees. During this time the Buyback is shown as "charging".</p>
-          <p>When the buyback starts it becomes "active" and the bar will drain until the buyback is complete.</p>
-          <p>Buybacks can stack on top of each other. Large buy demand will lead to buybacks far greater than 0.1 ETH.</p>
         </div>
       )
     },
@@ -169,14 +169,14 @@ export default function HowItWorks() {
       title: 'Rev Share',
       card: (
         <div className="relative">
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 relative overflow-hidden min-h-[400px]">
-            <div className="absolute inset-0 bg-black/20 rounded-3xl"></div>
+          <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-3xl p-8 relative overflow-hidden min-h-[500px] backdrop-blur-sm border border-gray-700/50">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-3xl"></div>
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-8 text-white text-center">Rev Share</h3>
               
               {/* Revenue distribution visual */}
               <div className="space-y-6">
-                <div className="bg-gray-700/50 rounded-xl p-4">
+                <div className="bg-gray-700/60 rounded-xl p-4 backdrop-blur-sm">
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-sm text-gray-300 flex items-center gap-2">
                       <span className="w-3 h-3 bg-blue-500 rounded-full"></span>
@@ -189,7 +189,7 @@ export default function HowItWorks() {
                   </div>
                 </div>
                 
-                <div className="bg-gray-700/50 rounded-xl p-4">
+                <div className="bg-gray-700/60 rounded-xl p-4 backdrop-blur-sm">
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-sm text-gray-300 flex items-center gap-2">
                       <span className="w-3 h-3 bg-green-500 rounded-full"></span>
@@ -202,7 +202,7 @@ export default function HowItWorks() {
                   </div>
                 </div>
                 
-                <div className="bg-gray-700/50 rounded-xl p-4">
+                <div className="bg-gray-700/60 rounded-xl p-4 backdrop-blur-sm">
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-sm text-gray-300 flex items-center gap-2">
                       <span className="w-3 h-3 bg-purple-500 rounded-full"></span>
@@ -216,21 +216,21 @@ export default function HowItWorks() {
                 </div>
                 
                 {/* Central pie chart representation */}
-                <div className="flex justify-center mt-6">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 flex items-center justify-center">
+                <div className="flex justify-center mt-6 mb-6">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 flex items-center justify-center shadow-lg">
                     <div className="text-2xl">💰</div>
                   </div>
+                </div>
+                
+                {/* Text content inside card */}
+                <div className="space-y-3 text-gray-300 text-sm leading-relaxed">
+                  <p>Trading fees are automatically distributed to stakeholders based on predetermined percentages.</p>
+                  <p>Creators receive the largest share for launching successful coins, while token holders get rewarded for their participation and loyalty.</p>
+                  <p>Platform fees support continued development and maintenance of the ecosystem.</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      ),
-      description: (
-        <div className="space-y-4 text-gray-300">
-          <p>Trading fees are automatically distributed to stakeholders based on predetermined percentages.</p>
-          <p>Creators receive the largest share for launching successful coins, while token holders get rewarded for their participation and loyalty.</p>
-          <p>Platform fees support continued development and maintenance of the ecosystem.</p>
         </div>
       )
     }
@@ -252,11 +252,8 @@ export default function HowItWorks() {
           >
             <CarouselContent className="-ml-4">
               {features.map((feature, index) => (
-                <CarouselItem key={feature.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="space-y-8">
-                    {feature.card}
-                    {feature.description}
-                  </div>
+                <CarouselItem key={feature.id} className="pl-4 md:basis-1/2 lg:basis-1/1">
+                  {feature.card}
                 </CarouselItem>
               ))}
             </CarouselContent>
