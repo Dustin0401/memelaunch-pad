@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Coins from "./pages/Coins";
 import AllCoins from "./pages/AllCoins";
+import TopPerformers from "./pages/TopPerformers";
+import HighVolume from "./pages/HighVolume";
 import Leaderboard from "./pages/Leaderboard";
 import HowItWorks from "./pages/HowItWorks";
 import NotFound from "./pages/NotFound";
@@ -22,6 +24,8 @@ const App = () => (
         <Route path="/" element={<Index />} />
         <Route path="/coins" element={<Coins />} />
         <Route path="/all-coins" element={<AllCoins />} />
+        <Route path="/top-performers" element={<TopPerformers />} />
+        <Route path="/high-volume" element={<HighVolume />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
